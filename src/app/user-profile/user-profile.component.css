@@ -1,0 +1,28 @@
+.card {
+  display: inline-block;
+  border: 1px solid #CACACA;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+p {
+  font-size: 18px;
+  margin-block-start: 5px;
+  margin-block-end: 5px;
+}
+
+input {
+  margin-top: 10px;
+}
+
+label {
+  color: #727272;
+}
+
+.margin {
+  margin: 5%;
+}
+
+.bg {
+  background-color: #CACACA;
+}
