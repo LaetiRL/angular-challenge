@@ -1,1 +1,37 @@
-<p>sign-up works!</p>
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+  <div>
+    <label for="fname">Prénom</label>
+    <input name="fname" type="text" [(ngModel)]="user.firstname" #fname="ngModel" required minlength="3" maxlength="15">
+  </div>
+  <div *ngIf="fname.touched && fname.errors">
+    <span *ngIf="fname.errors?.['required']">Votre Prénom est requis</span>
+    <span *ngIf="fname.errors?.['minlength']">Le Prénom doit comporter au moins 3 caractères</span>
+    <span *ngIf="fname.errors?.['maxlength']">Le Prénom ne doit pas dépasser 15 caractères</span>
+  </div>
+  <div>
+    <label for="lname">Nom</label>
+    <input name="lname" type="text" [(ngModel)]="user.lastname" #lname="ngModel" required minlength="3" maxlength="15">
+  </div>
+  <div *ngIf="lname.touched && lname.errors">
+    <span *ngIf="lname.errors?.['required']">Votre Nom est requis</span>
+    <span *ngIf="lname.errors?.['minlength']">Le Nom doit comporter au moins 3 caractères</span>
+    <span *ngIf="lname.errors?.['maxlength']">Le Nom ne doit pas dépasser 15 caractères</span>
+  </div>
+  <div>
+    <label for="mail">Email</label>
+    <input name="mail" type="text" [(ngModel)]="user.mail" #mail="ngModel" required email>
+  </div>
+  <div *ngIf="mail.touched && mail.errors">
+    <span *ngIf="mail.errors?.['required']">Le champ Email est requis</span>
+    <span *ngIf="mail.errors?.['email']">L’email est invalide</span>
+  </div>
+  <div>
+    <label for="password">Mot de Passe</label>
+    <input name="password" type="password" [(ngModel)]="user.password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!?@#$%^&]).{8,}" #password="ngModel" required>
+  </div>
+  <div *ngIf="password.touched && password.errors">
+    <span *ngIf="password.errors?.['required']">Le champ Mot de passe est requis</span>
+    <span *ngIf="password.errors?.['pattern']">Le Mot de passe doit contenir au moins: 8 caractères; une minuscule, une majustuce, une nombre et un caractère spécial</span>
+  </div>
+  <button type="submit" [disabled]="myForm.invalid">Envoyer</button>
+</form>
